@@ -1,0 +1,46 @@
+{
+  "name": "kyokushin-club",
+  "version": "1.0.0",
+  "description": "Bruxelles Club Kyokushin website",
+  "main": "main.js",
+  "dependencies": {},
+  "devDependencies": {
+    "bower": "^1.7.9",
+    "browser-sync": "^2.13.0",
+    "del": "^2.2.1",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-csso": "^2.0.0",
+    "gulp-filter": "^4.0.0",
+    "gulp-if": "^2.0.1",
+    "gulp-less": "^3.1.0",
+    "gulp-load-plugins": "^1.2.4",
+    "gulp-minify-html": "^1.0.6",
+    "gulp-sass": "^2.3.2",
+    "gulp-size": "^2.1.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.4",
+    "main-bower-files": "^2.13.1",
+    "path": "^0.12.7",
+    "psi": "^2.0.4",
+    "run-sequence": "^1.2.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/shindee/kyokushin-club.git"
+  },
+  "keywords": [
+    "karate",
+    "club",
+    "kyokushin"
+  ],
+  "author": "Sindie Victor Valentin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shindee/kyokushin-club/issues"
+  },
+  "homepage": "https://github.com/shindee/kyokushin-club#readme"
+}

@@ -1,0 +1,27 @@
+{
+  "name": "kyokushin-club",
+  "description": "Bruxelles Club Kyokushin website",
+  "main": "main.js",
+  "authors": [
+    "Sindie Victor Valentin"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "karate",
+    "club",
+    "kyokushin"
+  ],
+  "homepage": "https://github.com/shindee/kyokushin-club",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "material-design-lite": "^1.1.3"
+  }
+}
