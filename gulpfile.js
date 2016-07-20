@@ -18,6 +18,15 @@
  */
 
 'use strict';
+var SRC = './src';
+var DEST = './build';
+var faviconSrc= SRC + "/*.ico";
+
+var imgSrc = SRC + '/images/**/*', imgDest = DEST + '/images',
+jsSrc = SRC + '/scripts/**/*.js', jsxSrc = SRC + '/scripts/react/', jsDest = DEST + '/scripts',
+stylesSrc = SRC + '/styles/**/*', stylesDest = DEST + '/styles', sassSrc = SRC + '/styles/**/*.scss',
+htmlSrc = SRC + '/*.html', jsLibDest = DEST + '/lib', faviconSrc= SRC + "/*.ico";
+
 
 // Include Gulp & tools we'll use
 var gulp = require('gulp');
@@ -29,6 +38,11 @@ var path = require('path');
 var mainBowerFiles = require('main-bower-files');
 var browserSync = require('browser-sync').create();
 var reload = browserSync.reload;
+var gulpFilter = require('gulp-filter');
+var less = require('gulp-less');
+var sass = require('gulp-sass');
+var gutil = require('gulp-util');
+
 
 //delay of server start time
 var SERVE_DELAY = 3000;
@@ -72,6 +86,14 @@ gulp.task('images', function () {
     .pipe($.size({title: 'images'}));
 });
 
+//move favicon
+gulp.task('favicon', function(){
+	gulp.src(faviconSrc)
+	.pipe(changed(DEST))
+	.pipe(gulp.dest(DEST));
+});
+
+
 // Copy all files at the root level (src)
 gulp.task('copy', ['styles', 'images', 'js', 'bower', 'html'], function () {
   return gulp.src([
@@ -105,8 +127,8 @@ gulp.task('styles', function () {
   // For best performance, don't add Sass partials to `gulp.src`
 	console.log($);
   return gulp.src([
-    'src/styles/*.scss'
-  ])
+                   'src/styles/**/*.scss'
+  ], {dot: true})
     .pipe($.sourcemaps.init())
     //.pipe($.changed('.tmp/styles', {extension: '.css'}))
     .pipe($.sass({
@@ -124,57 +146,59 @@ gulp.task('styles', function () {
 
 //move bower components
 gulp.task('bower', function(){
-  var jsFilter = $.filter('*.js', {restore: true});
-  var lessFilter = $.filter('*.less', {restore: true});
-  var sassFilter = $.filter('*.scss', {restore: true});
-  var cssFilter = $.filter('*.css', {restore: true});
-  var eotFontFilter = $.filter('*.eot', {restore: true});
-  var svgFontFilter = $.filter('*.svg', {restore: true});
-  var woffFontFilter = $.filter('*.woff', {restore: true});
-  var ttfFontFilter = $.filter('*.ttf', {restore: true});
-  var woff2FontFilter = $.filter('*.woff2', {restore: true});
-  var imageFilter = $.filter(['*.png', 'jpg', 'jpeg'], {restore: true});
+	  var jsFilter = gulpFilter('*.js', {restore: true});
+	  var lessFilter = gulpFilter('*.less', {restore: true});
+	  var sassFilter = gulpFilter('*.scss', {restore: true});
+	  var cssFilter = gulpFilter('*.css', {restore: true});
+	  var eotFontFilter = gulpFilter('*.eot', {restore: true});
+	  var svgFontFilter = gulpFilter('*.svg', {restore: true});
+	  var woffFontFilter = gulpFilter('*.woff', {restore: true});
+	  var ttfFontFilter = gulpFilter('*.ttf', {restore: true});
+	  var woff2FontFilter = gulpFilter('*.woff2', {restore: true});
+	  var imageFilter = gulpFilter(['*.png', 'jpg', 'jpeg'], {restore: true});
 
-	return gulp.src(mainBowerFiles())
-  // grab vendor js files from bower_components and push in /build/
-  .pipe(jsFilter)
-  .pipe(gulp.dest('src/lib/js/'))
-	.pipe(jsFilter.restore)
-  //less
-  .pipe(lessFilter)
-  .pipe($.less({
-      paths: [ path.join(__dirname, 'less', 'includes') ]
-    }))
-  .pipe(gulp.dest('/src/lib/css/'))
-	.pipe(lessFilter.restore)
-  //sass
-  .pipe(sassFilter)
-  .pipe($.sass({
-    precision: 10,
-    onError: console.error.bind(console, 'Sass error:')
-  }))
-  .pipe(gulp.dest('src/lib/css/'))
-	.pipe(sassFilter.restore)
-  // grab vendor css files from bower_components and push in /build/
-  .pipe(cssFilter)
-  .pipe(gulp.dest('src/lib/css/'))
-  .pipe(cssFilter.restore)
-  // grab vendor font files from bower_components and push in /build/
-  .pipe(eotFontFilter)
-  .pipe(gulp.dest('src/lib/fonts'))
-  .pipe(eotFontFilter.restore)
-  .pipe(svgFontFilter)
-  .pipe(gulp.dest('src/lib/fonts'))
-  .pipe(svgFontFilter.restore)
-  .pipe(woffFontFilter)
-  .pipe(gulp.dest('src/lib/fonts'))
-  .pipe(woffFontFilter.restore)
-  .pipe(ttfFontFilter)
-  .pipe(gulp.dest('src/lib/fonts'))
-  .pipe(ttfFontFilter.restore)
-  .pipe(woff2FontFilter)
-  .pipe(gulp.dest('src/lib/fonts'));
-});
+	  var onError = function (err) {
+	    console.log(err);
+	   };
+
+		return gulp.src(mainBowerFiles())
+	  // grab vendor js files from bower_components and push in /build/
+	  .pipe(jsFilter)
+	  .pipe(gulp.dest(jsLibDest + '/js/').on('error', function(){console.log(arguments)}))
+		.pipe(jsFilter.restore)
+	  //less
+	  .pipe(lessFilter)
+	  .pipe(less({
+	      paths: [ path.join(__dirname, 'less', 'includes') ]
+	    }))
+	  .pipe(gulp.dest(jsLibDest + '/css/').on('error', function(){console.log(arguments)}))
+		.pipe(lessFilter.restore)
+	  //sass
+	  .pipe(sassFilter)
+	  .pipe(sass().on('error', sass.logError))
+	  .pipe(gulp.dest(jsLibDest + '/css/'))
+		.pipe(sassFilter.restore)
+	  // grab vendor css files from bower_components and push in /build/
+	  .pipe(cssFilter)
+	  .on('error', gutil.log.bind(gutil, 'Browserify Error'))
+	  .pipe(gulp.dest(jsLibDest + '/css/'))
+	  .pipe(cssFilter.restore)
+	  // grab vendor font files from bower_components and push in /build/
+	  .pipe(eotFontFilter)
+	  .pipe(gulp.dest(jsLibDest + '/fonts'))
+	  .pipe(eotFontFilter.restore)
+	  .pipe(svgFontFilter)
+	  .pipe(gulp.dest(jsLibDest + '/fonts'))
+	  .pipe(svgFontFilter.restore)
+	  .pipe(woffFontFilter)
+	  .pipe(gulp.dest(jsLibDest + '/fonts'))
+	  .pipe(woffFontFilter.restore)
+	  .pipe(ttfFontFilter)
+	  .pipe(gulp.dest(jsLibDest + '/fonts'))
+	  .pipe(ttfFontFilter.restore)
+	  .pipe(woff2FontFilter)
+	  .pipe(gulp.dest(jsLibDest + '/fonts'));
+	});
 
 // Scan your HTML for assets & optimize them
 gulp.task('html', function () {
