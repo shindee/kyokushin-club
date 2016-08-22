@@ -29,10 +29,11 @@
     <!-- Page styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="./lib/css/dialog-polyfill.css">
     <link rel="stylesheet" href="./lib/css/material.min.css">
     <link rel="stylesheet" href="./styles/main.css">
     
-    
+    <script src="./lib/js/dialog-polyfill.js" ></script>
     <script src="./lib/js/jquery.js" ></script>
     <script src="./scripts/index.js" ></script>
 
@@ -47,6 +48,35 @@
       margin-bottom: 40px;
       z-index: 900;
     }
+    
+    #dojoKunDialog {
+    	width: 45%;
+    }
+    
+   	#mottosDialog {
+    		width: 45%;
+    }
+    
+    @media only screen and (max-width: 500px) {
+	  	#mottosDialog, #dojoKunDialog {
+    		width: 95%;
+    	}
+    }
+    
+    @media only screen and (max-width: 800px) and (min-width: 501px) {
+	  	#mottosDialog, #dojoKunDialog {
+    		width: 75%;
+    	}
+    }
+    
+    @media only screen and (max-width: 1024px)  and (min-width: 801px) {
+	  	#mottosDialog, #dojoKunDialog {
+    		width: 65%;
+    	}
+    }
+    
+    
+    
     </style>
   </head>
   <body>
@@ -133,7 +163,7 @@
                 summarizing his martial arts philosophy in 11 mottos, which are central to his teachings to the Kyokushin Way.</span>
               </div>
               <div class="mdl-card__actions">
-                 <a class="club-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="mottos.html">
+                 <a id="mottosLink" class="club-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="">
                    READ MORE
                    <i class="material-icons">chevron_right</i>
                  </a>
@@ -152,7 +182,7 @@
                  the Dojo Kun comprises a list of rules to follow in the Dojo, but moreover throughout all aspects of your life.</span>
               </div>
               <div class="mdl-card__actions">
-                 <a class="club-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="dojo-kun.html">
+                 <a id="dojoKunLink" class="club-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="">
                    READ MORE
                    <i class="material-icons">chevron_right</i>
                  </a>
@@ -253,5 +283,177 @@
     </div>
     <a href="https://github.com/google/material-design-lite/blob/master/templates/club-dot-com/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">View Source</a>
     <script src="./lib/js/material.min.js"></script>
+  
+  <!-- 11 MOTTOS DIALOG -->
+    <dialog id="mottosDialog" class="mdl-dialog">
+    <h4 class="mdl-dialog__title">11 Mottos of Mas Oyama</h4>
+    <div class="mdl-dialog__content" style="">
+              <ul class="demo-list-three mdl-list">
+				  <li class="mdl-list__item mdl-list__item--three-line">
+				    <span class="mdl-list__item-primary-content">
+				      <i class="mdl-list__item-avatar" style="background-color: white; color:red;">1.</i>
+				      <span class="mdl-list__item-text-body">
+				       	The Martial Way begins and ends with courtesy. Therefore, be properly and genuinely courteous at all times.
+				      </span>
+				    </span>
+				  </li>
+				  <li class="mdl-list__item mdl-list__item--three-line">
+				    <span class="mdl-list__item-primary-content">
+				      <i class="mdl-list__item-avatar" style="background-color: white; color:red;">2.</i>
+				      <span class="mdl-list__item-text-body">
+				        Following the Martial Way is like scaling a cliff. Continue upwards without rest. It demands absolute and unflattering devotion to the task at hand.
+				      </span>
+				    </span>
+				  </li>
+				  <li class="mdl-list__item mdl-list__item--three-line">
+				    <span class="mdl-list__item-primary-content">
+				      <i class="mdl-list__item-avatar" style="background-color: white; color:red;">3.</i>
+				      <span class="mdl-list__item-text-body">
+				        Strive to seize the initiative in all things, all the time guarding against actions stemming from selfish animosity or thoughtlessness.
+				      </span>
+				    </span>
+				  </li>
+				  <li class="mdl-list__item mdl-list__item--three-line">
+				    <span class="mdl-list__item-primary-content">
+				      <i class="mdl-list__item-avatar" style="background-color: white; color:red;">4.</i>
+				      <span class="mdl-list__item-text-body">
+				        Even for Martial Artists, the place of money cannot be ignored. Yet one should be careful never to become attached to it.
+				      </span>
+				    </span>
+				  </li>
+				  <li class="mdl-list__item mdl-list__item--three-line">
+				    <span class="mdl-list__item-primary-content">
+				      <i class="mdl-list__item-avatar" style="background-color: white; color:red;">5.</i>
+				      <span class="mdl-list__item-text-body">
+				      	The Martial Way is centered in posture. Strive to maintain correct posture at all times.
+				      </span>
+				    </span>
+				  </li>
+				  <li class="mdl-list__item mdl-list__item--three-line">
+				    <span class="mdl-list__item-primary-content">
+				      <i class="mdl-list__item-avatar" style="background-color: white; color:red;">6.</i>
+				      <span class="mdl-list__item-text-body">
+				      	The Martial Way begins with one thousand days and is mastered after ten thousand days of training.
+				      </span>
+				    </span>
+				  </li>
+				  <li class="mdl-list__item mdl-list__item--three-line">
+				    <span class="mdl-list__item-primary-content">
+				      <i class="mdl-list__item-avatar" style="background-color: white; color:red;">7.</i>
+				      <span class="mdl-list__item-text-body">
+				      	In Martial Arts, introspection begets wisdom. Always see contemplation of your actions as an opportunity to improve.
+				      </span>
+				    </span>
+				  </li>
+				  <li class="mdl-list__item mdl-list__item--three-line">
+				    <span class="mdl-list__item-primary-content">
+				      <i class="mdl-list__item-avatar" style="background-color: white; color:red;">8.</i>
+				      <span class="mdl-list__item-text-body">
+				      	The nature and purpose of the Martial Way is universal. All selfish desires should be roasted in the tempering fires of hard training.
+				      </span>
+				    </span>
+				  </li>
+				  <li class="mdl-list__item mdl-list__item--three-line">
+				    <span class="mdl-list__item-primary-content">
+				      <i class="mdl-list__item-avatar" style="background-color: white; color:red;">9.</i>
+				      <span class="mdl-list__item-text-body">
+				      	Martial Arts begin with a point and end in a circle. Straight lines stem from this principle.
+				      </span>
+				    </span>
+				  </li>
+				  <li class="mdl-list__item mdl-list__item--three-line">
+				    <span class="mdl-list__item-primary-content">
+				      <i class="mdl-list__item-avatar" style="background-color: white; color:red;">10.</i>
+				      <span class="mdl-list__item-text-body">
+				      	The true essence of the Martial Way can only be realized through experience. Knowing this, learn never to fear its demand.
+				      </span>
+				    </span>
+				  </li>
+				  <li class="mdl-list__item mdl-list__item--three-line">
+				    <span class="mdl-list__item-primary-content">
+				      <i class="mdl-list__item-avatar" style="background-color: white; color:red;">11.</i>
+				      <span class="mdl-list__item-text-body">
+				      	Always remember: In Martial Arts the rewards of a confident and grateful heart are truly abundant.
+				      </span>
+				    </span>
+				  </li>
+				</ul>
+          </div>
+    <div class="mdl-dialog__actions">
+		<a id="" class="close club-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="">
+        	CLOSE
+		</a>
+    </div>
+  </dialog>
+  
+  <!-- DOJO KUN DIALOG --> 
+  <dialog id="dojoKunDialog" class="mdl-dialog">
+    <h4 class="mdl-dialog__title">DOJO KUN</h4>
+    <div class="mdl-dialog__content" style="">
+              <ul class="demo-list-three mdl-list">
+				  <li class="mdl-list__item mdl-list__item--three-line">
+				    <span class="mdl-list__item-primary-content">
+				      <i class="material-icons mdl-list__item-avatar" style="background-color: white; color:red;">format_quote</i>
+				      <span class="mdl-list__item-text-body">
+				        We will train our hearts and bodies for a firm unshaken spirit.
+				      </span>
+				    </span>
+				  </li>
+				  <li class="mdl-list__item mdl-list__item--three-line">
+				    <span class="mdl-list__item-primary-content">
+				      <i class="material-icons  mdl-list__item-avatar" style="background-color: white; color:red;">format_quote</i>
+				      <span class="mdl-list__item-text-body">
+				        We will pursue the true meaning of the Martial Way, so that in time our senses may be alert.
+				      </span>
+				    </span>
+				  </li>
+				  <li class="mdl-list__item mdl-list__item--three-line">
+				    <span class="mdl-list__item-primary-content">
+				      <i class="material-icons  mdl-list__item-avatar" style="background-color: white; color:red;">format_quote</i>
+				      <span class="mdl-list__item-text-body">
+				        With true vigor, we will seek to cultivate a spirit of self-denial.
+				      </span>
+				    </span>
+				  </li>
+				  <li class="mdl-list__item mdl-list__item--three-line">
+				    <span class="mdl-list__item-primary-content">
+				      <i class="material-icons  mdl-list__item-avatar" style="background-color: white; color:red;">format_quote</i>
+				      <span class="mdl-list__item-text-body">
+				        We will observe the rules of courtesy, respect our superiors, and refrain from violence.
+				      </span>
+				    </span>
+				  </li>
+				  <li class="mdl-list__item mdl-list__item--three-line">
+				    <span class="mdl-list__item-primary-content">
+				      <i class="material-icons  mdl-list__item-avatar" style="background-color: white; color:red;">format_quote</i>
+				      <span class="mdl-list__item-text-body">
+				      	We will follow our religious principles and never forget the true virtue of humility.
+				      </span>
+				    </span>
+				  </li>
+				  <li class="mdl-list__item mdl-list__item--three-line">
+				    <span class="mdl-list__item-primary-content">
+				      <i class="material-icons  mdl-list__item-avatar" style="background-color: white; color:red;">format_quote</i>
+				      <span class="mdl-list__item-text-body">
+				      	We will look upwards to wisdom and strength, not seeking other desires.
+				      </span>
+				    </span>
+				  </li>
+				  <li class="mdl-list__item mdl-list__item--three-line">
+				    <span class="mdl-list__item-primary-content">
+				      <i class="material-icons  mdl-list__item-avatar" style="background-color: white; color:red;">format_quote</i>
+				      <span class="mdl-list__item-text-body">
+				      	All our lives, through the discipline of karate, we will seek to fulfill the true meaning of the Kyokushin Way.
+				      </span>
+				    </span>
+				  </li>
+				</ul>
+          </div>
+    <div class="mdl-dialog__actions">
+		<a id="" class="close club-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="">
+        	CLOSE
+		</a>
+    </div>
+  </dialog>
   </body>
 </html>
