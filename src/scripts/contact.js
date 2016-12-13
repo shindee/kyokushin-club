@@ -8,9 +8,7 @@ function initDojoMap(){
 		        zoom: 17
 		    });
 	
-	
-   
-    
+
     
     var contentString = '<div id="content">'+
     '<div id="siteNotice">'+
@@ -87,7 +85,7 @@ function initParkMap() {
     var mapOptions = {
         center: location,
         zoom: 17
-    }
+    };
     var map = new google.maps.Map(mapCanvas, mapOptions);
     
     setTimeout(function () {
